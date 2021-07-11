@@ -3,11 +3,14 @@ import java.util.Queue;
 
 public class ShortestPathFinder {
 
-    /**
-     * Directions the user authorised to go asre up/down/left/right
-     */
+   // Directions the user authorised to go asre up/down/left/right
     int[][] directions = {{1, 0},{0, 1},{-1, 0},{0, -1} };
 
+    /**
+     * Find path with BFS
+     * @param maze Given Maze
+     * @return sum of Path
+     */
     public int BFSPathFInder(int[][] maze) {
         int pathCount = 0;
         int rowLength = maze.length;
@@ -17,24 +20,17 @@ public class ShortestPathFinder {
         boolean[][] isVisited = new boolean[rowLength][columnLength];
 
 
-        /**
-         * if start or end have block items, maze explore fails
-         * return -1
-         */
-        if (initialItem == 1 || endItem == 1) {
+       // if start or end have block items, maze explore fails
+            if (initialItem == 1 || endItem == 1) {
             return -1;
         }
 
-        /**
-         * Define Queu to add path
-         */
+        //Define Queu to add path
         Queue<int[]> queue = new LinkedList<>();
         queue.add(new int[]{0, 0});
         isVisited[0][0] = true;
 
-        /**
-         * Check if Queue is not empty for explore
-         */
+       //Check if Queue is not empty for explore
         while (!queue.isEmpty()) {
             int size = queue.size();
             for (int i = 0; i < size; i++) {
@@ -44,10 +40,8 @@ public class ShortestPathFinder {
                     return pathCount + 1;
                 }
 
-                /**
-                 * add directions to the queue if they are not visited
-                 */
-                for (int[] dir : directions) {
+                //add directions to the queue if they are not visited
+                   for (int[] dir : directions) {
                     int x = dir[0] + CurrentPoll[0];
                     int y = dir[1] + CurrentPoll[1];
 
